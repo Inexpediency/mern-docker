@@ -2,7 +2,11 @@ version: '3'
 
 services:
   api:
-    build: ./api
-    command: npm run start
-    ports:
+    build: ./api # to build container
+    command: npm run start # command for starting container
+    restart: unless-stopped # to restart app if its stopped
+    ports: # our port : app port
       - "3000:3000"
+    environment:
+      - PORT=3000
+      - HOST=http://dockerizing.com
