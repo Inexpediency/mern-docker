@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "api service",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js"
@@ -10,5 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "repository": "https://github.com/ythosa/dockerizing/api"
 }
