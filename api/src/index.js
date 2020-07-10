@@ -1,14 +1,14 @@
 const express = require('express')
 const app = express()
 const { connectDb } = require('./helpers/db')
-const { host, port } = require('./configuration')
+const { host, port, db } = require('./configuration')
 
 const startServer = () => {
     app.listen(port, () => {
         console.log(`Started api service on
-        port: ${port}
-        host: ${host}
-    `)
+            port: ${port}
+            host: ${host}`)
+        console.log(`Our database is ${db}`)
     })
 }
 
