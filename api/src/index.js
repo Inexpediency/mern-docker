@@ -5,25 +5,20 @@ const startTestPost = require('./tests/start-test')
 
 const app = express()
 
-const startServer = () => {
+const startServer = async () => {
     app.listen(port, () => {
         console.log(`Started api service on
             port: ${port}
             host: ${host}`)
         console.log(`Our database is ${db}`)
-
-        const testing = async function () {
-            const ob = await startTestPost()
-            console.log(ob)
-        }()
-        // const ob = startTestPost()
-        // console.log(ob)
-        // if (err) {
-        //     console.log(err)
-        //     process.exit(1)
-        // }
-        // console.log(ok)
     })
+
+    const { ok, err } = await startTestPost()
+    if (err) {
+        console.log(err)
+        process.exit(1)
+    }
+    console.log(ok)
 }
 
 app.get('/test', (req, res) => {
