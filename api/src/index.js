@@ -1,7 +1,7 @@
 const express = require('express')
 const { connectDb } = require('./helpers/db')
 const { host, port, db } = require('./configuration')
-const startTestPost = require('./tests/start-test')
+const dbOperationsTest = require('./tests/db-operations')
 
 const app = express()
 
@@ -13,7 +13,7 @@ const startServer = async () => {
         console.log(`Our database is ${db}`)
     })
 
-    const { ok, err } = await startTestPost()
+    const { ok, err } = await dbOperationsTest()
     if (err) {
         console.log(err)
         process.exit(1)
