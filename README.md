@@ -1,8 +1,8 @@
 # dockerizing
 
 ### Description
-* Docker Usage Example
-* Template for next projects with docker & docker-compose
+* Docker usage example;
+* Template for next projects with docker & docker-compose.
 
 
 ### Available scripts:
