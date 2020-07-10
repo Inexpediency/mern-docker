@@ -1,7 +1,9 @@
 const express = require('express')
-const app = express()
 const { connectDb } = require('./helpers/db')
 const { host, port, db } = require('./configuration')
+const startTestPost = require('./tests/start-test')
+
+const app = express()
 
 const startServer = () => {
     app.listen(port, () => {
@@ -9,6 +11,18 @@ const startServer = () => {
             port: ${port}
             host: ${host}`)
         console.log(`Our database is ${db}`)
+
+        const testing = async function () {
+            const ob = await startTestPost()
+            console.log(ob)
+        }()
+        // const ob = startTestPost()
+        // console.log(ob)
+        // if (err) {
+        //     console.log(err)
+        //     process.exit(1)
+        // }
+        // console.log(ok)
     })
 }
 
