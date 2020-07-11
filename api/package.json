@@ -4,7 +4,8 @@
   "description": "api service",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.22"
   },
-  "repository": "https://github.com/ythosa/dockerizing/api"
+  "repository": "https://github.com/ythosa/dockerizing/api",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

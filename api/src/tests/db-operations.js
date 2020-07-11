@@ -13,10 +13,10 @@ module.exports = async () => {
             throw `Database isn't working: posts.name (${posts.name}) must be "Silent"`
         }
 
-        await Post.deleteMany()
-
+        await Post.deleteMany({})
         return { ok: `Database is working correctly ...`, err: null }
     } catch (e) {
+        await Post.remove({})
         return { ok: null, err: `Database isn't working: ${e}` }
     }
 }
