@@ -26,3 +26,4 @@
 
 * `docker volume ls` - get all volumes
 * `docker images` - get all images
+* `docker ps` - get all working processes

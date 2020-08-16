@@ -3,18 +3,20 @@ version: '3'
 services:
   api:
     build: ./api # to build container
+    container_name: mern-docker-api
     command: npm run start # command for starting container
     restart: unless-stopped # to restart app if its stopped
     ports: # our port : app port
       - "3000:3000"
     environment:
       - PORT=3000
-      - HOST=http://dockerizing.com
+      - HOST=http://merndocker.com
       - MONGO_URL=mongodb://api_db:27017/api
     depends_on:
       - api_db
 
   api_db:
+    container_name: mern-docker-api-db
     image: mongo:latest
     volumes:
       - mongodb_api:/data/db
