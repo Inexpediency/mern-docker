@@ -15,11 +15,31 @@ services:
     depends_on:
       - api_db
 
+  auth:
+    build: ./auth
+    container_name: mern-docker-auth
+    command: npm run start
+    restart: unless-stopped
+    ports:
+        - "3001:3001"
+    environment:
+      - PORT=3001
+      - MONGO_URL=mongodb://auth_db:27017/auth
+    depends_on:
+      - auth_db
+
   api_db:
     container_name: mern-docker-api-db
     image: mongo:latest
     volumes:
       - mongodb_api:/data/db
 
+  auth_db:
+    container_name: mern-docker-auth-db
+    image: mongo:latest
+    volumes:
+      - mongodb_auth:/data/db
+
 volumes:
   mongodb_api:
+  mongodb_auth:
