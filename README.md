@@ -14,13 +14,17 @@
 
 <br>
 
-* `docker logs dockerizing_api_1` - see server logs
-* `docker logs dockerizing_api_db_1` - see database logs
+* `docker logs merndocker_api` - see api service logs
+* `docker logs merndocker_api_db` - see api database logs
+* `docker logs merndocker_auth` - see auth service logs
+* `docker logs merndocker_auth_db` - see auth database logs
 
 <br>
 
 * `docker-compose rm api` - remove api container
-* `docker-compose rm api_db` - remove db container (to clear database)
+* `docker-compose rm api_db` - remove auth db container (to clear database)
+* `docker-compose rm auth` - remove auth container
+* `docker-compose rm auth_db` - remove auth db container (to clear database)
 
 <br>
 
