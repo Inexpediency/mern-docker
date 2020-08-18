@@ -6,11 +6,11 @@ import './App.css'
 
 function App() {
     const makeAPIRequest = () => {
-        axios.get('/auth/test').then(res => {
+        axios.get('/api/test').then(res => {
             console.log(`Test API server result: ${res.data}`)
         })
 
-        axios.get('/api/test').then(res => {
+        axios.get('/auth/test').then(res => {
             console.log(`Test AUTH server result: ${res.data}`)
         })
     }
