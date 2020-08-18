@@ -10,12 +10,16 @@ services:
       - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
     depends_on:
       - frontend
+    networks:
+      - mern-docker
 
   frontend:
     build: ./frontend
     container_name: mern-docker-frontend
     command: serve -s build -l 3000
     restart: unless-stopped
+    networks:
+      - mern-docker
 
   api:
     build: ./api
@@ -31,6 +35,8 @@ services:
       - AUTH_API_URL=http://auth:3002/api
     depends_on:
       - api_db
+    networks:
+      - mern-docker
 
   auth:
     build: ./auth
@@ -45,19 +51,30 @@ services:
       - API_URL=http://api:3001/api
     depends_on:
       - auth_db
+    networks:
+      - mern-docker
 
   api_db:
     container_name: mern-docker-api-db
     image: mongo:latest
     volumes:
       - mongodb_api:/data/db
+    networks:
+      - mern-docker
 
   auth_db:
     container_name: mern-docker-auth-db
     image: mongo:latest
     volumes:
       - mongodb_auth:/data/db
+    networks:
+      - mern-docker
 
 volumes:
   mongodb_api:
   mongodb_auth:
+
+networks: 
+  mern-docker:
+    driver: bridge
+  
