@@ -1,20 +1,28 @@
 version: '3'
 
 services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: mern-docker-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - frontend
+
   frontend: 
     build: ./frontend
     container_name: mern-docker-frontend
     command: serve -s build -l 3000
     restart: unless-stopped
-    ports:
-      - "3000:3000"
 
   api:
-    build: ./api # to build container
+    build: ./api
     container_name: mern-docker-api
-    command: npm run start # command for starting container
-    restart: unless-stopped # to restart app if its stopped
-    ports: # our port : app port
+    command: npm run start
+    restart: unless-stopped
+    ports:
       - "3001:3001"
     environment:
       - PORT=3001
