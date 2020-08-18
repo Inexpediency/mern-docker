@@ -1,7 +1,14 @@
 version: '3'
 
 services:
+  nginx:
+    volumes:
+      - ./nginx/nginx.conf.dev:/etc/nginx/conf.d/nginx.conf
+
   frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     command: npm run start
     stdin_open: true
     tty: true

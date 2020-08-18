@@ -10,11 +10,15 @@ services:
       - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
     depends_on:
       - frontend
+      - api
+      - auth
     networks:
       - mern-docker
 
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.prod
     container_name: mern-docker-frontend
     command: serve -s build -l 3000
     restart: unless-stopped
@@ -26,8 +30,6 @@ services:
     container_name: mern-docker-api
     command: npm run start
     restart: unless-stopped
-    ports:
-      - "3001:3001"
     environment:
       - PORT=3001
       - HOST=http://merndocker.com
@@ -43,8 +45,6 @@ services:
     container_name: mern-docker-auth
     command: npm run start
     restart: unless-stopped
-    ports:
-        - "3002:3002"
     environment:
       - PORT=3002
       - MONGO_URL=mongodb://auth_db:27017/auth
