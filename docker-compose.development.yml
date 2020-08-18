@@ -12,3 +12,8 @@ services:
     command: npm run dev
     volumes:
       - ./api/src:/usr/src/app/src
+
+  auth:
+    command: npm run dev
+    volumes:
+      - ./auth/src:/usr/src/app/src

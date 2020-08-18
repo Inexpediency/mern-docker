@@ -1,6 +1,7 @@
 const express = require('express')
+const axios = require('axios')
 const { connectDb } = require('./helpers/db')
-const { host, port, db } = require('./configuration')
+const { host, port, db, authAPIURL } = require('./configuration')
 const dbOperationsTest = require('./tests/db-operations')
 
 const app = express()
@@ -25,8 +26,16 @@ app.get('/test', (req, res) => {
     res.send('Our api server is working correctly :3')
 })
 
+app.get('/test_current_user', (req, res) => {
+    axios.get(`${authAPIURL}/current_user`).then(authAPIResponse => {
+        res.json({
+            testCurrentUser: true,
+            currentUserFromAuthAPIService: authAPIResponse.data
+        })
+    })
+})
+
 connectDb()
     .on('error', console.log)
     .on('disconnected', connectDb)
     .once('open', startServer)
-
