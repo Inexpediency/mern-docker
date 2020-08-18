@@ -1,6 +1,7 @@
 const express = require('express')
+const axios = require('axios')
 const { connectDb } = require('./helpers/db')
-const { port, db } = require('./configuration')
+const { port, db, apiURL } = require('./configuration')
 
 const app = express()
 
@@ -14,6 +15,14 @@ const startServer = async () => {
 
 app.get('/test', (req, res) => {
     res.send('Our auth server is working correctly :3')
+})
+
+app.get('/test_with_api_data', (req, res) => {
+    axios.get(`${apiURL}/test_api_data`).then(apiResponse => {
+        res.json({
+            testAPIData: apiResponse.data.testWithAPI,
+        })
+    })
 })
 
 app.get('/api/current_user', (req, res) => {

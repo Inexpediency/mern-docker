@@ -42,6 +42,7 @@ services:
     environment:
       - PORT=3002
       - MONGO_URL=mongodb://auth_db:27017/auth
+      - API_URL=http://api:3001/api
     depends_on:
       - auth_db
 

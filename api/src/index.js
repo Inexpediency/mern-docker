@@ -26,6 +26,12 @@ app.get('/test', (req, res) => {
     res.send('Our api server is working correctly :3')
 })
 
+app.get('/api/test_api_data', (req, res) => {
+    res.json({
+        testWithAPI: true
+    })
+})
+
 app.get('/test_current_user', (req, res) => {
     axios.get(`${authAPIURL}/current_user`).then(authAPIResponse => {
         res.json({
