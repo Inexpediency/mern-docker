@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Ythosa/mern-docker/mailer/src/internal/app/model"
+
 	"github.com/google/uuid"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -29,6 +31,10 @@ func newServer() *server {
 	}
 
 	return s
+}
+
+func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	s.router.ServeHTTP(w, r)
 }
 
 func (s *server) configurateRouter() {
@@ -79,6 +85,15 @@ func (s *server) handleTestSending() http.HandlerFunc {
 		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
 			s.error(w, r, http.StatusBadRequest, err)
 			return
+		}
+
+		message := model.Message{
+			Email: req.Email,
+			Text:  req.Text,
+		}
+
+		if err := message.Validate(); err != nil {
+			s.error(w, r, http.StatusBadRequest, err)
 		}
 
 		s.respond(w, r, http.StatusOK, map[string]string{
