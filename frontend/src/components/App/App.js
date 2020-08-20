@@ -1,12 +1,12 @@
 import React from 'react'
 
-import MessageSendingForm from './MessageSendingForm'
-import ApiRequestMaker from './ApiRequestMaker'
+import MessageSendingForm from '../MessageSendingForm'
+import ApiRequestMaker from '../ApiRequestMaker'
 
 import logo from './logo.svg'
 import './App.css'
 
-function App() {
+export function App() {
     return (
         <div className="App">
             <ApiRequestMaker />
@@ -28,5 +28,3 @@ function App() {
         </div>
     )
 }
-
-export default App
