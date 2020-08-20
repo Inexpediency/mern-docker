@@ -15,4 +15,9 @@ server {
         proxy_pass http://auth:3002;
         rewrite ^/auth/(.*) /$1 break;
     }
+
+    location /mailer {
+        proxy_pass http://mailer:8080;
+        rewrite ^/mailer/(.*) /$1 break;
+    }
 }

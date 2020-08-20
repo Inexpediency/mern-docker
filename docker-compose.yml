@@ -70,6 +70,14 @@ services:
     networks:
       - mern-docker
 
+  mailer:
+    build: ./mailer
+    container_name: mern-docker-mailer
+    command: go run ./cmd/apiserver
+    restart: unless-stopped
+    networks: 
+      - mern-docker
+
 volumes:
   mongodb_api:
   mongodb_auth:
