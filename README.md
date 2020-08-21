@@ -1,4 +1,4 @@
-# dockerizing
+# MERN-Docker
 
 ### Description
 * Docker usage example;
