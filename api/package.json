@@ -16,6 +16,6 @@
   },
   "repository": "https://github.com/ythosa/mern-docker/api",
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.20"
   }
 }
